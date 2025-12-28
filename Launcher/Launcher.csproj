@@ -19,7 +19,7 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>..\..\Debug\Client\</OutputPath>
+    <OutputPath>..\..\Release\Client\</OutputPath>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Zircon.ico</ApplicationIcon>

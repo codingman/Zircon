@@ -24,7 +24,7 @@
     <NoWarn>1701;1702;CA1416</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>..\..\Debug\Client\</OutputPath>
+    <OutputPath>..\..\Release\Client\</OutputPath>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>default</LangVersion>
     <NoWarn>1701;1702;CA1416</NoWarn>
