@@ -86,9 +86,9 @@ namespace Client.Envir.Translations
         public override string DungeonInCastle { get; set; } = "Your guild must own a castle.";
         public override string CharacterSameGender { get; set; } = "You are already a {0}.";
         public override string LogoutInCombat { get; set; } = "Unable to logout whilst in combat.";
-        public override string ExitInCombat { get; set; } = "Unable to exit game whilst in combat.";
+        public override string ExitInCombat { get; set; } = "战斗中无法退出。";
         public override string FilterConfigSaved { get; set; } = "Drop filters have been saved to your configuration";
-        public override string GroupMemberLimit { get; set; } = "Group member limit has been reached";
+        public override string GroupMemberLimit { get; set; } = "队伍人数已达上限";
         public override string GroupSelf { get; set; } = "You can not group with yourself";
         public override string GroupNotLeader { get; set; } = "你不是队长。";
         public override string GroupLFGRequestSent { get; set; } = "Request to join group has been sent.";
