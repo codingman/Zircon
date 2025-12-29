@@ -1,5 +1,6 @@
 ﻿using Client.Controls;
 using Client.Envir;
+using Client.Extensions;
 using Client.UserModels;
 using Library;
 using System;
@@ -80,14 +81,14 @@ namespace Client.Scenes.Views
             if (ScrollBar == null || TextPanel == null) return;
 
             TextPanel.Location = new Point(ResizeBuffer, ResizeBuffer);
-            TextPanel.Size = new Size(Size.Width - ScrollBar.Size.Width - 1 - ResizeBuffer*2, Size.Height - ResizeBuffer*2);
+            TextPanel.Size = new Size(Size.Width - ScrollBar.Size.Width - 1 - ResizeBuffer * 2, Size.Height - ResizeBuffer * 2);
 
             ScrollBar.VisibleSize = TextPanel.Size.Height;
             ScrollBar.Location = new Point(Size.Width - ScrollBar.Size.Width - ResizeBuffer, ResizeBuffer);
-            ScrollBar.Size = new Size(14, Size.Height - ResizeBuffer*2);
+            ScrollBar.Size = new Size(14, Size.Height - ResizeBuffer * 2);
 
             if (!IsResizing)
-                ResizeChat();           
+                ResizeChat();
         }
 
         public override void OnIsResizingChanged(bool oValue, bool nValue)
@@ -130,7 +131,7 @@ namespace Client.Scenes.Views
                 Size = new Size(14, Size.Height),
                 VisibleSize = Size.Height
             };
-            ScrollBar.Location = new Point(Size.Width - ScrollBar.Size.Width - ResizeBuffer , 0);
+            ScrollBar.Location = new Point(Size.Width - ScrollBar.Size.Width - ResizeBuffer, 0);
             ScrollBar.ValueChanged += (o, e) => UpdateItems();
 
             TextPanel = new DXControl
@@ -139,7 +140,7 @@ namespace Client.Scenes.Views
                 PassThrough = true,
                 Location = new Point(ResizeBuffer, ResizeBuffer),
                 Size = new Size(Size.Width - ScrollBar.Size.Width - 1 - ResizeBuffer * 2, Size.Height - ResizeBuffer * 2),
-                
+
             };
 
             AlertIcon = new DXImageControl
@@ -199,7 +200,7 @@ namespace Client.Scenes.Views
             DXTabControl tab = TabButton.Parent as DXTabControl;
 
             if (tab.SelectedTab == this && !GameScene.Game.ChatOptionsBox.Visible &&
-                GameScene.Game.ChatTextBox.TextBox != DXTextBox.ActiveTextBox && 
+                GameScene.Game.ChatTextBox.TextBox != DXTextBox.ActiveTextBox &&
                 Panel.FadeOutCheckBox.Checked && Panel.TransparentCheckBox.Checked)
             {
                 var newest = History.LastOrDefault();
@@ -636,7 +637,7 @@ namespace Client.Scenes.Views
                 ClientUserItem item = items.FirstOrDefault(e => e.Index == index);
                 if (item == null) continue;
 
-                List<ButtonInfo> buttons = NPCDialog.GetWordRegionsNew(DXManager.Graphics, label.Text, label.Font, label.DrawFormat, label.Size.Width, ranges[i].First, ranges[i].Length);
+                List<ButtonInfo> buttons = DrawTextExtensions.GetWordRegionsNew(label.Text, label.Font, label.DrawFormat, label.Size.Width, ranges[i].First, ranges[i].Length);
 
                 List<DXLabel> labels = new List<DXLabel>();
 

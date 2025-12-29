@@ -188,7 +188,7 @@ namespace Server.Envir
                 SEnvir.Log($"{IPAddress} Disconnected, Large Packet");
                 return;
             }
-            
+
             if (ReceiveList.Count > Config.MaxPacket)
             {
                 TryDisconnect();
@@ -679,18 +679,6 @@ namespace Server.Envir
             magic.Magic.Set4Key = p.Set4Key;
         }
 
-        public void Process(C.GroupNotify p)
-        {
-            if (Stage != GameStage.Game) return;
-
-            Player.LFGReceiveUpdates = p.Receive;
-
-            if (p.Receive)
-            {
-                Player.SendLFGList();
-            }
-        }
-
         public void Process(C.GroupSwitch p)
         {
             if (Stage != GameStage.Game) return;
@@ -702,12 +690,6 @@ namespace Server.Envir
             if (Stage != GameStage.Game) return;
 
             Player.GroupInvite(p.Name);
-        }
-        public void Process(C.GroupRequest p)
-        {
-            if (Stage != GameStage.Game) return;
-
-            Player.GroupRequest(p.Name);
         }
         public void Process(C.GroupRemove p)
         {
@@ -721,21 +703,8 @@ namespace Server.Envir
 
             if (p.Accept)
                 Player.GroupJoin();
-            else
-            {
-                var requestCon = Player.GroupInvitationRequest?.Connection;
-                requestCon?.ReceiveChat(requestCon.Language.GroupRequestDeclined, MessageType.System);
-            }
 
             Player.GroupInvitation = null;
-            Player.GroupInvitationRequest = null;
-        }
-
-        public void Process(C.GroupLFGUpdate p)
-        {
-            if (Stage != GameStage.Game) return;
-
-            Player.LFGUpdate(p);
         }
 
         public void Process(C.Inspect p)
@@ -1226,6 +1195,12 @@ namespace Server.Envir
 
             Player.CompanionRetrieve(p.Index);
         }
+        public void Process(C.CompanionRelease p)
+        {
+            if (Stage != GameStage.Game) return;
+
+            Player.CompanionRelease(p.Index);
+        }
 
         public void Process(C.CompanionStore p)
         {
@@ -1380,13 +1355,6 @@ namespace Server.Envir
             Player.NPCAccessoryRefine(p);
         }
 
-        public void Process(C.RequestInstance p)
-        {
-            if (Stage != GameStage.Game) return;
-
-            Player.RequestInstance(p);
-        }
-
         public void Process(C.JoinInstance p)
         {
             if (Stage != GameStage.Game) return;
@@ -1458,6 +1426,55 @@ namespace Server.Envir
             if (Stage != GameStage.Game) return;
 
             Player.IncreaseDiscipline();
+        }
+
+        public void Process(C.LootBoxOpen p)
+        {
+            if (Stage != GameStage.Game) return;
+
+            Player.LootBoxOpen(p);
+        }
+
+        public void Process(C.LootBoxReroll p)
+        {
+            if (Stage != GameStage.Game) return;
+
+            Player.LootBoxReroll(p);
+        }
+
+        public void Process(C.LootBoxConfirmSelection p)
+        {
+            if (Stage != GameStage.Game) return;
+
+            Player.LootBoxConfirmSelection(p);
+        }
+
+        public void Process(C.LootBoxReveal p)
+        {
+            if (Stage != GameStage.Game) return;
+
+            Player.LootBoxReveal(p);
+        }
+
+        public void Process(C.LootBoxTakeItems p)
+        {
+            if (Stage != GameStage.Game) return;
+
+            Player.LootBoxConfirm(p);
+        }
+
+        public void Process(C.BundleOpen p)
+        {
+            if (Stage != GameStage.Game) return;
+
+            Player.BundleOpen(p);
+        }
+
+        public void Process(C.BundleConfirm p)
+        {
+            if (Stage != GameStage.Game) return;
+
+            Player.BundleConfirm(p);
         }
     }
 

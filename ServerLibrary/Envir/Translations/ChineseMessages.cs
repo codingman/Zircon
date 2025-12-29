@@ -82,7 +82,7 @@ namespace Server.Envir.Translations
         public override string CannotTownTeleport { get; set; } = "无法传送到该地图";
         public override string CannotRandomTeleport { get; set; } = "当前地图无法使用随机传送卷";
         public override string ConnotResetCompanionSkill { get; set; } = "为了避免误操作，要使用{0}请输入'@宠物技能{1}'";
-        public override string MagicMaxLevelReached { get; set; } = "You have already reached max {0} level.";
+        public override string MagicMaxLevelReached { get; set; } = "您已达到最高{0}级";
         public override string LearnBookFailed { get; set; } = "技能书太过残破,修炼技能失败";
         public override string LearnBookSuccess { get; set; } = "恭喜你，你已经成功的掌握{0}";
         public override string LearnBook4Failed { get; set; } = "学习{0}等级技能失败";
@@ -92,6 +92,7 @@ namespace Server.Envir.Translations
         public override string GuildStorageSafeZone { get; set; } = "你在非安全区无法使用行会仓库";
         public override string CompanionNoRoom { get; set; } = "你的宠物已经无法携带更多物品";
         public override string StorageLimit { get; set; } = "你不能再扩展存储空间了";
+        public override string NotEnoughBagSpaceAvailable { get; set; } = "行李空间不足";
 
 
         public override string MarryAlreadyMarried { get; set; } = "你已经结婚了";
@@ -117,12 +118,14 @@ namespace Server.Envir.Translations
 
         public override string CompanionAppearanceAlready { get; set; } = "新的宠物{0}已经可以领养";
         public override string CompanionNeedTicket { get; set; } = "你需要在商城购买一张宠物解锁券来解锁这只新宠物";
+        public override string CompanionNeedItem { get; set; } = "You need to have a {0} to unlock a new appearance.";
         public override string CompanionSkillEnabled { get; set; } = "宠物可以使用{0}级的技能";
         public override string CompanionSkillDisabled { get; set; } = "宠物不能使用{0}级的技能";
         public override string CompanionAppearanceLocked { get; set; } = "新宠物{0}目前尚未解锁，你无法购买";
-        public override string CompanionNeedGold { get; set; } = "当前金币不足无法购买宠物";
+        public override string CompanionNeedCurrency { get; set; } = "当前金币不足无法购买宠物";
         public override string CompanionBadName { get; set; } = "该名称不符合宠物命名的规则";
         public override string CompanionRetrieveFailed { get; set; } = "无法获得{0}宠物，该宠物当前跟随{1}";
+        public override string CompanionReleaseFailed { get; set; } = "Unable to release {0} because it is currently with {1}.";
         public override string QuestSelectReward { get; set; } = "你必须选择任务奖励";
         public override string QuestNeedSpace { get; set; } = "无法完成任务，你的背包空间不足";
 
@@ -226,7 +229,7 @@ namespace Server.Envir.Translations
         public override string GroupRecallMemberNotAllowed { get; set; } = "{0}当前拒绝天地合一";
         public override string GroupRecallFromMap { get; set; } = "你所在的地图无法使用天地合一";
         public override string GroupRecallMemberFromMap { get; set; } = "{0}无法从该地图天地合一传送出去";
-        public override string GroupRequestDeclined { get; set; } = "Request to join group has been declined.";
+
 
         public override string TradeAlreadyTrading { get; set; } = "你已经在和别人交易了";
         public override string TradeAlreadyHaveRequest { get; set; } = "你已经申请交易";
@@ -247,8 +250,6 @@ namespace Server.Envir.Translations
         public override string TradeFailedPartnerItemsChanged { get; set; } = "{0}的物品更换，交易取消";
         public override string TradeNotEnoughSpace { get; set; } = "你不能携带更多的物品，请整理背包然后在申请交易";
         public override string TradeComplete { get; set; } = "交易完成";
-        public override string GroupLFGEnabled { get; set; } = "LFG has been enabled for {0} minutes.";
-        public override string GroupLFGExpired { get; set; } = "LFG has now expired.";
 
 
         public override string NPCFundsGuild { get; set; } = "你无法使用行会基金，因为你还没有行会";

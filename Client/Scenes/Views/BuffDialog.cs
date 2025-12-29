@@ -1,5 +1,4 @@
 ﻿using Client.Controls;
-using Client.Envir;
 using Client.Models;
 using Client.UserModels;
 using Library;
@@ -20,32 +19,6 @@ namespace Client.Scenes.Views
         public override WindowType Type => WindowType.BuffBox;
         public override bool CustomSize => false;
         public override bool AutomaticVisibility => true;
-
-        #region Scale
-
-        public float Scale
-        {
-            get => _Scale;
-            set
-            {
-                if (_Scale == value) return;
-
-                float oldValue = _Scale;
-                _Scale = value;
-
-                OnScaleChanged(oldValue, value);
-            }
-        }
-        private float _Scale = 1F;
-        public event EventHandler<EventArgs> ScaleChanged;
-        public void OnScaleChanged(float oValue, float nValue)
-        {
-            ScaleChanged?.Invoke(this, EventArgs.Empty);
-        }
-
-        #endregion
-
-
         #endregion
 
         public BuffDialog()
@@ -56,7 +29,7 @@ namespace Client.Scenes.Views
             TitleLabel.Visible = false;
             CloseButton.Visible = false;
             Opacity = 0.6F;
-            
+
             Size = new Size(30, 30);
         }
 
@@ -91,7 +64,7 @@ namespace Client.Scenes.Views
                         break;
                 }
             }
-            
+
             if (permStats.Count > 0)
                 buffs.Add(new ClientBuffInfo { Index = 0, Stats = permStats, Type = BuffType.ItemBuffPermanent, RemainingTime = TimeSpan.MaxValue });
 
@@ -104,7 +77,6 @@ namespace Client.Scenes.Views
                 {
                     Parent = this,
                     LibraryFile = LibraryFile.CBIcon,
-                    Scale = this.Scale,
                     HintPosition = HintPosition.BottomLeft
                 };
 
@@ -282,16 +254,10 @@ namespace Client.Scenes.Views
                 };
             }
 
-            var x = 27;
-            var y = 27;
-
-            x = (int)(x * this.Scale);
-            y = (int)(y * this.Scale);
-
             for (int i = 0; i < buffs.Count; i++)
-                Icons[buffs[i]].Location = new Point(3 + (i % 6) * x, 3 + (i / 6) * y);
+                Icons[buffs[i]].Location = new Point(3 + (i % 6) * 27, 3 + (i / 6) * 27);
 
-            Size = new Size(3 + Math.Min(6, Math.Max(1, Icons.Count)) * x, 3 + Math.Max(1, 1 +  (Icons.Count - 1) / 6) * y);    
+            Size = new Size(3 + Math.Min(6, Math.Max(1, Icons.Count)) * 27, 3 + Math.Max(1, 1 + (Icons.Count - 1) / 6) * 27);
         }
 
         private string GetBuffHint(ClientBuffInfo buff)
@@ -478,8 +444,11 @@ namespace Client.Scenes.Views
                     text = $"Magic Weakness\n\n" +
                            $"Your Magic Resistance has been greatly reduced.\n";
                     break;
+                default:
+                    text = $"{buff.Type}\n";
+                    break;
             }
-            
+
             if (stats != null && stats.Count > 0)
             {
                 foreach (KeyValuePair<Stat, int> pair in stats.Values)
@@ -515,14 +484,15 @@ namespace Client.Scenes.Views
                     pair.Value.ForeColour = Color.IndianRed;
                     continue;
                 }
-                    if (pair.Key.RemainingTime == TimeSpan.MaxValue) continue;
+
+                if (pair.Key.RemainingTime == TimeSpan.MaxValue) continue;
 
                 if (pair.Key.RemainingTime.TotalSeconds >= 10)
                 {
                     pair.Value.ForeColour = Color.White;
                     continue;
                 }
-                
+
                 float rate = pair.Key.RemainingTime.Milliseconds / (float)1000;
 
                 pair.Value.ForeColour = Functions.Lerp(Color.White, Color.CadetBlue, rate);

@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Library;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using Library;
 
 //Cleaned
 namespace Client.Controls
@@ -11,6 +11,8 @@ namespace Client.Controls
     {
         #region Properties
         public static List<DXComboBox> ComboBoxes = new List<DXComboBox>();
+
+        public DXImageControl Background;
 
         #region NormalHeight
 
@@ -124,7 +126,7 @@ namespace Client.Controls
         public DXButton DownArrow;
         public DXLabel SelectedLabel;
         public DXListBox ListBox;
-        
+
         public override void OnSizeChanged(Size oValue, Size nValue)
         {
             base.OnSizeChanged(oValue, nValue);
@@ -133,7 +135,7 @@ namespace Client.Controls
 
             SelectedLabel.Size = new Size(Size.Width - 3 - DownArrow.Size.Height, NormalHeight);
 
-            DownArrow.Location = new Point(Size.Width - DownArrow.Size.Width, (NormalHeight - DownArrow.Size.Height)/2);
+            DownArrow.Location = new Point(Size.Width - DownArrow.Size.Width, (NormalHeight - DownArrow.Size.Height) / 2);
 
             ListBox.Location = new Point(DisplayArea.Location.X + SelectedLabel.Location.X, DisplayArea.Location.Y + NormalHeight + 2);
             ListBox.BringToFront();
@@ -152,6 +154,14 @@ namespace Client.Controls
             Border = true;
             BorderColour = Color.FromArgb(198, 166, 99);
 
+            Background = new DXImageControl
+            {
+                LibraryFile = LibraryFile.Interface,
+                Index = 206,
+                Visible = false,
+                Parent = this
+            };
+
             DownArrow = new DXButton
             {
                 LibraryFile = LibraryFile.GameInter,
@@ -162,7 +172,7 @@ namespace Client.Controls
 
             SelectedLabel = new DXLabel
             {
-                Location =  new Point(0,-1),
+                Location = new Point(0, -1),
                 AutoSize = false,
                 Parent = this,
                 ForeColour = Color.White,
@@ -213,6 +223,13 @@ namespace Client.Controls
                 DropDownHeightChanged = null;
                 ShowingChanged = null;
                 SelectedItemChanged = null;
+
+                if (Background != null)
+                {
+                    if (!Background.IsDisposed)
+                        Background.Dispose();
+                    Background = null;
+                }
 
                 if (DownArrow != null)
                 {

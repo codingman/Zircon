@@ -1,7 +1,6 @@
 ﻿using MirDB;
 using System;
 using System.Collections.Generic;
-using System.Reflection.Emit;
 using System.Text.Json.Serialization;
 
 namespace Library.SystemModels
@@ -279,6 +278,22 @@ namespace Library.SystemModels
             }
         }
         private int _TimeLimitInMinutes;
+
+        public bool ShowTimer
+        {
+            get { return _ShowTimer; }
+            set
+            {
+                if (_ShowTimer == value) return;
+
+                var oldValue = _ShowTimer;
+                _ShowTimer = value;
+
+                OnChanged(oldValue, value, "ShowTimer");
+            }
+        }
+
+        private bool _ShowTimer;
 
         [Association("Map", true)]
         public DBBindingList<InstanceMapInfo> Maps { get; set; }

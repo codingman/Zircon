@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Network.ClientPackets
 {
@@ -62,7 +59,7 @@ namespace Library.Network.ClientPackets
         public string CheckSum { get; set; }
     }
 
-    public sealed class Logout : Packet {}
+    public sealed class Logout : Packet { }
 
 
     public sealed class NewCharacter : Packet
@@ -87,7 +84,7 @@ namespace Library.Network.ClientPackets
         public int CharacterIndex { get; set; }
     }
 
-    public sealed class TownRevive : Packet {}
+    public sealed class TownRevive : Packet { }
 
     public sealed class Turn : Packet
     {
@@ -105,10 +102,10 @@ namespace Library.Network.ClientPackets
         public int Distance { get; set; }
     }
 
-    public sealed class Mount : Packet {}
+    public sealed class Mount : Packet { }
 
-    public sealed class FishingCast : Packet 
-    { 
+    public sealed class FishingCast : Packet
+    {
         public FishingState State { get; set; }
         public MirDirection Direction { get; set; }
         public Point FloatLocation { get; set; }
@@ -133,7 +130,7 @@ namespace Library.Network.ClientPackets
     {
         public MirDirection Direction { get; set; }
     }
-    
+
     public sealed class Magic : Packet
     {
         public MirDirection Direction { get; set; }
@@ -163,7 +160,7 @@ namespace Library.Network.ClientPackets
         public int Slot { get; set; }
     }
 
-    public sealed class ItemSplit : Packet 
+    public sealed class ItemSplit : Packet
     {
         public GridType Grid { get; set; }
         public int Slot { get; set; }
@@ -210,7 +207,7 @@ namespace Library.Network.ClientPackets
         public bool Enabled { get; set; }
     }
 
-    public sealed class PickUp : Packet {}
+    public sealed class PickUp : Packet { }
 
     public sealed class Chat : Packet
     {
@@ -334,22 +331,12 @@ namespace Library.Network.ClientPackets
         public bool CanUse { get; set; }
     }
 
-    public sealed class GroupNotify : Packet
-    {
-        public bool Receive { get; set; }
-    }
-
     public sealed class GroupSwitch : Packet
     {
         public bool Allow { get; set; }
     }
 
     public sealed class GroupInvite : Packet
-    {
-        public string Name { get; set; }
-    }
-
-    public sealed class GroupRequest : Packet
     {
         public string Name { get; set; }
     }
@@ -362,14 +349,6 @@ namespace Library.Network.ClientPackets
     public sealed class GroupResponse : Packet
     {
         public bool Accept { get; set; }
-    }
-
-    public sealed class GroupLFGUpdate : Packet
-    {
-        public bool Enabled { get; set; }
-        public string Name { get; set; }
-        public string Type { get; set; }
-        public int MaxCount { get; set; }
     }
 
     public sealed class Inspect : Packet
@@ -625,6 +604,11 @@ namespace Library.Network.ClientPackets
     {
         public int Index { get; set; }
     }
+
+    public sealed class CompanionRelease : Packet
+    {
+        public int Index { get; set; }
+    }
     public sealed class CompanionStore : Packet
     {
         public int Index { get; set; }
@@ -641,7 +625,7 @@ namespace Library.Network.ClientPackets
 
     public sealed class MarriageTeleport : Packet
     {
-        
+
     }
 
     public sealed class BlockAdd : Packet
@@ -699,7 +683,7 @@ namespace Library.Network.ClientPackets
 
     public sealed class JoinStarterGuild : Packet
     {
-        
+
     }
 
     public sealed class NPCAccessoryReset : Packet
@@ -724,12 +708,6 @@ namespace Library.Network.ClientPackets
         public List<CellLinkInfo> Links { get; set; }
         public RefineType RefineType { get; set; }
     }
-
-    public sealed class RequestInstance : Packet
-    {
-        public int Index { get; set; }
-    }
-
     public sealed class JoinInstance : Packet
     {
         public int Index { get; set; }
@@ -757,5 +735,43 @@ namespace Library.Network.ClientPackets
 
     public sealed class IncreaseDiscipline : Packet
     {
+    }
+
+    public sealed class LootBoxOpen : Packet
+    {
+        public int Slot { get; set; }
+    }
+
+    public sealed class LootBoxReroll : Packet
+    {
+        public int Slot { get; set; }
+    }
+
+    public sealed class LootBoxConfirmSelection : Packet
+    {
+        public int Slot { get; set; }
+    }
+
+    public sealed class LootBoxReveal : Packet
+    {
+        public int Slot { get; set; }
+        public int Choice { get; set; }
+    }
+
+    public sealed class LootBoxTakeItems : Packet
+    {
+        public int Slot { get; set; }
+        public int Choice { get; set; }
+    }
+
+    public sealed class BundleOpen : Packet
+    {
+        public int Slot { get; set; }
+    }
+
+    public sealed class BundleConfirm : Packet
+    {
+        public int Slot { get; set; }
+        public int Choice { get; set; }
     }
 }
