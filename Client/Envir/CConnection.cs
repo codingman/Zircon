@@ -2030,10 +2030,10 @@ namespace Client.Envir
                 string text = item.Count > 1 ? string.Format(CEnvir.Language.ItemsGained, displayInfo.ItemName, item.Count) : string.Format(CEnvir.Language.ItemGained, displayInfo.ItemName);
 
                 if ((item.Flags & UserItemFlags.QuestItem) == UserItemFlags.QuestItem)
-                    text += " (Quest)";
+                    text += " (任务)";
 
                 if (item.Info.ItemEffect == ItemEffect.ItemPart)
-                    text += " [Part]";
+                    text += " [碎片]";
 
                 GameScene.Game.ReceiveChat(text, MessageType.Combat);
             }
@@ -4237,10 +4237,10 @@ namespace Client.Envir
                 string text = item.Count > 1 ? string.Format(CEnvir.Language.CompanionItemsGained, displayInfo.ItemName, item.Count) : string.Format(CEnvir.Language.CompanionItemGained, displayInfo.ItemName);
 
                 if ((item.Flags & UserItemFlags.QuestItem) == UserItemFlags.QuestItem)
-                    text += " (Quest)";
+                    text += " (任务)";
 
                 if (item.Info.ItemEffect == ItemEffect.ItemPart)
-                    text += " [Part]";
+                    text += " [碎片]";
 
                 GameScene.Game.ReceiveChat(text, MessageType.Combat);
             }

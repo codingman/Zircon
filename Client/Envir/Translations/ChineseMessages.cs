@@ -160,7 +160,7 @@ namespace Client.Envir.Translations
         public override string CommonControlConfigWindowSoundTabMusicVolumeLabel { get; set; } = "音乐音量";
         public override string CommonControlConfigWindowSoundTabPlayerVolumeLabel { get; set; } = "玩家音量";
         public override string CommonControlConfigWindowSoundTabMonsterVolumeLabel { get; set; } = "怪物音量";
-        public override string CommonControlConfigWindowSoundTabMagicVolumeLabel { get; set; } = "魔法音量";
+        public override string CommonControlConfigWindowSoundTabMagicVolumeLabel { get; set; } = "技能音量";
         public override string CommonControlConfigWindowGameTabItemNameLabel { get; set; } = "物品显名";
         public override string CommonControlConfigWindowGameTabMonsterNameLabel { get; set; } = "怪物显名";
         public override string CommonControlConfigWindowGameTabPlayerNameLabel { get; set; } = "人物显名";
@@ -569,7 +569,7 @@ namespace Client.Envir.Translations
         public override string InventoryDialogTrashButtonHint { get; set; } = "移除";
         public override string InventoryDialogWalletLabelHint { get; set; } = "钱包 [{0}]";
 
-        public override string MagicDialogTitle { get; set; } = "魔法";
+        public override string MagicDialogTitle { get; set; } = "技能";
 
         public override string MenuDialogTitle { get; set; } = "菜单";
         public override string MenuDialogSettingsButtonLabel { get; set; } = "设置";
@@ -719,7 +719,7 @@ namespace Client.Envir.Translations
         public override string StorageDialogFilterItemLabel { get; set; } = "物品:";
         public override string StorageDialogFilterClearButtonLabel { get; set; } = "清理";
         public override string StorageDialogStorageTab { get; set; } = "仓库";
-        public override string StorageDialogPartsTab { get; set; } = "Parts";
+        public override string StorageDialogPartsTab { get; set; } = "数量";
 
         public override string TradeDialogTitle { get; set; } = "交易窗口";
         public override string TradeDialogUserLabel { get; set; } = "用户";
