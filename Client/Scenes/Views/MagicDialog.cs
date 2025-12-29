@@ -3,6 +3,7 @@ using Client.Envir;
 using Client.Models;
 using Client.UserModels;
 using Library;
+using Library.ChineseEnums;
 using Library.SystemModels;
 using System;
 using System.Collections.Generic;
@@ -327,7 +328,7 @@ namespace Client.Scenes.Views
         public MagicTab(MagicSchool school)
         {
             TabButton.LibraryFile = LibraryFile.Interface;
-            TabButton.Hint = school.ToString();
+            TabButton.Hint = MagicSchoolChinese.GetText(school);
 
             BackColour = Color.Empty;
             Border = false;
@@ -851,7 +852,7 @@ namespace Client.Scenes.Views
                 ExperienceLabel.Opacity = opacity;
 
                 Image.IsEnabled = true;
-                LevelLabel.Text = $"Level: {magic.Level}";
+                LevelLabel.Text = $"等级: {magic.Level}";
                 LevelLabel.ForeColour = Color.FromArgb(198, 166, 99);
                 LevelLabel.Location = new Point(57, 30);
 
@@ -884,7 +885,7 @@ namespace Client.Scenes.Views
 
                 if (Info.NeedLevel1 > MapObject.User.Level)
                 {
-                    ExperienceLabel.Text = $"Required Level: {Info.NeedLevel1}";
+                    ExperienceLabel.Text = $"要求角色等级: {Info.NeedLevel1}";
                     ExperienceLabel.ForeColour = Color.Red;
                 }
                 else
@@ -894,22 +895,22 @@ namespace Client.Scenes.Views
                         switch (magic.Level)
                         {
                             case 0:
-                                ExperienceLabel.Text = $"Experience: {magic.Experience}/{magic.Info.Experience1}";
+                                ExperienceLabel.Text = $"熟练度: {magic.Experience}/{magic.Info.Experience1}";
                                 break;
                             case 1:
-                                ExperienceLabel.Text = $"Experience: {magic.Experience}/{magic.Info.Experience2}";
+                                ExperienceLabel.Text = $"熟练度: {magic.Experience}/{magic.Info.Experience2}";
                                 break;
                             case 2:
-                                ExperienceLabel.Text = $"Experience: {magic.Experience}/{magic.Info.Experience3}";
+                                ExperienceLabel.Text = $"熟练度: {magic.Experience}/{magic.Info.Experience3}";
                                 break;
                             default:
-                                ExperienceLabel.Text = $"Experience: {magic.Experience}/{(magic.Level - 2) * 500}";
+                                ExperienceLabel.Text = $"熟练度: {magic.Experience}/{(magic.Level - 2) * 500}";
                                 break;
                         }
                     }
                     else
                     {
-                        ExperienceLabel.Text = $"Experience: Max Level";
+                        ExperienceLabel.Text = $"熟练度: 已达到最高等级";
                     }
                     ExperienceLabel.ForeColour = Color.FromArgb(198, 166, 99);
                 }
@@ -927,11 +928,11 @@ namespace Client.Scenes.Views
 
                 Level4Border.Visible = false;
                 Image.IsEnabled = false;
-                LevelLabel.Text = "Not\r\nLearned";
+                LevelLabel.Text = "\r\n未学习";
                 LevelLabel.ForeColour = Color.Red;
                 LevelLabel.Location = new Point(57, 17);
 
-                ExperienceLabel.Text = $"Required Level: {Info.NeedLevel1}";
+                ExperienceLabel.Text = $"要求角色等级: {Info.NeedLevel1}";
                 ExperienceLabel.ForeColour = MapObject.User.Level >= Info.NeedLevel1 ? Color.LimeGreen : Color.Red;
             }
 

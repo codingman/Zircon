@@ -269,7 +269,7 @@ namespace Client.Scenes.Views
             switch (buff.Type)
             {
                 case BuffType.Server:
-                    text = $"Server Settings\n";
+                    text = $"服务器设置\n";
                     break;
                 case BuffType.HuntGold:
                     text = $"Hunt Gold\n";
@@ -466,7 +466,7 @@ namespace Client.Scenes.Views
             }
 
             if (buff.RemainingTime != TimeSpan.MaxValue)
-                text += $"\nDuration: {Functions.ToString(buff.RemainingTime, true)}";
+                text += $"\n持续时间: {Functions.ToString(buff.RemainingTime, true)}";
 
             if (buff.Pause) text += "\nPaused (Not in Effect).";
 

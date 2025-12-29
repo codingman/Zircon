@@ -3981,7 +3981,7 @@ namespace Server.Models
             string itemName;
 
             if (item.Info.ItemEffect == ItemEffect.ItemPart)
-                itemName = SEnvir.ItemInfoList.Binding.First(x => x.Index == partIndex).ItemName + " - [Part]";
+                itemName = SEnvir.ItemInfoList.Binding.First(x => x.Index == partIndex).ItemName + " - [碎片]";
             else
                 itemName = item.Info.ItemName;
 

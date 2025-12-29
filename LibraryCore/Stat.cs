@@ -1,4 +1,5 @@
-﻿using Library.Network;
+﻿using Library.ChineseEnums;
+using Library.Network;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -118,33 +119,33 @@ namespace Library
                 case StatType.None:
                     return null;
                 case StatType.Default:
-                    return description.Title;
+                    return StatChinese.GetTitle(stat);
                 case StatType.Min:
                     if (this[description.MaxStat] != 0) return null;
 
-                    return description.Title;
+                    return StatChinese.GetTitle(stat);
                 case StatType.Max:
-                    return description.Title;
+                    return StatChinese.GetTitle(stat);
                 case StatType.Percent:
-                    return description.Title;
+                    return StatChinese.GetTitle(stat);
                 case StatType.Text:
-                    return description.Title;
+                    return StatChinese.GetTitle(stat);
                 case StatType.Time:
                     if (this[stat] < 0)
-                        return description.Title;
+                        return StatChinese.GetTitle(stat);
 
-                    return description.Title;
+                    return StatChinese.GetTitle(stat);
                 case StatType.SpellPower:
                     if (description.MinStat == stat && this[description.MaxStat] != 0) return null;
 
                     if (this[Stat.MinMC] != this[Stat.MinSC] || this[Stat.MaxMC] != this[Stat.MaxSC] || !groupSpellPower)
-                        return description.Title;
+                        return StatChinese.GetTitle(stat);
 
                     if (stat != Stat.MaxSC) return null;
 
-                    return "Spell Power";
+                    return "法术强度";
                 case StatType.AttackElement:
-                    return $"E. Atk";
+                    return $"攻击元素";
                 case StatType.ElementResistance:
 
                     list = new List<Stat>();
@@ -183,7 +184,7 @@ namespace Library
                         if (!ei && list[1] != stat) return null; //Impossible to be false and have less than 2 stats.
                     }
 
-                    value = ei ? $"E. Adv" : $"E. Dis";
+                    value = ei ? $"强元素" : $"弱元素";
 
                     return value;
                 default: return null;
@@ -208,27 +209,27 @@ namespace Library
                 case StatType.None:
                     return null;
                 case StatType.Default:
-                    return description.Title + ": " + string.Format(description.Format, this[stat]);
+                    return StatChinese.GetTitle(stat) + ": " + string.Format(description.Format, this[stat]);
                 case StatType.Min:
                     if (this[description.MaxStat] != 0) return null;
 
-                    return description.Title + ": " + string.Format(description.Format, this[stat]);
+                    return StatChinese.GetTitle(stat) + ": " + string.Format(description.Format, this[stat]);
                 case StatType.Max:
-                    return description.Title + ": " + string.Format(description.Format, this[description.MinStat], this[stat]);
+                    return StatChinese.GetTitle(stat) + ": " + string.Format(description.Format, this[description.MinStat], this[stat]);
                 case StatType.Percent:
-                    return description.Title + ": " + string.Format(description.Format, this[stat] / 100D);
+                    return StatChinese.GetTitle(stat) + ": " + string.Format(description.Format, this[stat] / 100D);
                 case StatType.Text:
-                    return description.Title;
+                    return StatChinese.GetTitle(stat);
                 case StatType.Time:
                     if (this[stat] < 0)
-                        return description.Title + ": Permanent";
+                        return StatChinese.GetTitle(stat) + ": 永久";
 
-                    return description.Title + ": " + Functions.ToString(TimeSpan.FromSeconds(this[stat]), true);
+                    return StatChinese.GetTitle(stat) + ": " + Functions.ToString(TimeSpan.FromSeconds(this[stat]), true);
                 case StatType.SpellPower:
                     if (description.MinStat == stat && this[description.MaxStat] != 0) return null;
 
                     if (this[Stat.MinMC] != this[Stat.MinSC] || this[Stat.MaxMC] != this[Stat.MaxSC])
-                        return description.Title + ": " + string.Format(description.Format, this[description.MinStat], this[stat]);
+                        return StatChinese.GetTitle(stat) + ": " + string.Format(description.Format, this[description.MinStat], this[stat]);
 
                     if (this[Stat.MaxSC] != 0)
                     {
@@ -239,7 +240,7 @@ namespace Library
                         if (stat != Stat.MinSC) return null;
                     }
 
-                    return "Spell Power: " + string.Format(description.Format, this[description.MinStat], this[stat]);
+                    return "法术强度: " + string.Format(description.Format, this[description.MinStat], this[stat]);
                 case StatType.AttackElement:
 
                     list = new List<Stat>();
@@ -249,7 +250,7 @@ namespace Library
                     if (list.Count == 0 || list[0] != stat)
                         return null;
 
-                    value = $"E. Atk: ";
+                    value = $"攻击元素: ";
 
                     neecComma = false;
                     foreach (Stat s in list)
@@ -259,7 +260,7 @@ namespace Library
                         if (neecComma)
                             value += $", ";
 
-                        value += $"{description.Title} +" + this[s];
+                        value += $"{StatChinese.GetTitle(stat)} +" + this[s];
                         neecComma = true;
                     }
                     return value;
@@ -302,7 +303,7 @@ namespace Library
                     }
 
 
-                    value = ei ? $"E. Adv: " : $"E. Dis: ";
+                    value = ei ? $"强元素: " : $"弱元素: ";
 
                     neecComma = false;
 
@@ -316,7 +317,7 @@ namespace Library
                         if (neecComma)
                             value += $", ";
 
-                        value += $"{description.Title} x" + Math.Abs(this[s]);
+                        value += $"{StatChinese.GetTitle(s)} x" + Math.Abs(this[s]);
                         neecComma = true;
                     }
 
